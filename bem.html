@@ -1,0 +1,139 @@
+<!-- БЭМ -->
+<div class="page-header__logo"></div>
+<div class="header__logo"></div>
+<div class="logo"></div>
+
+<!-- Блок__элемент--модификатор -->
+<div class="list__item--active"></div>
+
+<!-- Блок__элемент_модификатор -->
+<div class="list__item_active"></div>
+
+<!-- Блок__независимый элемент, название блока характеризует смысл, что это? -->
+<!-- внешние размеры CSS позиционирование для блоков нельзя margin  -->
+<!-- верно -->
+<div class="logo"></div>
+<div class="menu"></div>
+<div class="error"></div>
+
+<!-- неверно -->
+<div class="big-item"></div>
+<div class="orange-text"></div>
+
+<!-- Принцип работы с блоками -->
+<!-- Используйте блок, если это будет повторяться -->
+
+<header class="header">
+	<div class="logo"></div>
+	<nav class="menu"></nav>
+</header>
+
+<!-- "Элемент, составная часть блока, не может использоваться в отрыве от него, смысл элемента что это - текст, заглавие, цифра" -->
+
+<header class="header">
+	<div class="header__logo"></div>
+	<nav class="header__menu"></nav>
+</header>
+
+<form class="search-form">
+	<input class="search-form__input">
+	<button class="search-form__button"></button>
+</form>
+
+<!-- вложенность - все внутренние элементы пишутся относительно блока-->
+<!-- верно -->
+ <div class="about">
+ 	  <div class="about__inner">
+ 	  	  <div class="about__inner-items"></div>
+ 	  </div>
+ </div>	
+
+<!-- неверно -->
+
+ <div class="about">
+ 	  <div class="about__inner">
+ 	  	  <div class="about__iner__items"></div> <!--элемент элемента не бывает-->
+ 	  </div>
+ </div>	
+
+ <!-- важный принцип вложенности -->
+
+ <div class="block">
+ 	<div class="block__elem1">
+ 		<div class="block__elem2">
+ 			<div class="block__elem3"></div>
+ 		</div>
+ 	</div>
+ </div>
+
+.block {}
+.block__elem1 {}
+.block__elem2 {color: #fff}
+.block__elem3 {}
+
+.block__elem2 {} .block__elem3 {color: #000}     //неверно, чтоб не было приоритетности - по силе выше чем, и он будет черного цвета, перебиваем
+
+ <!-- элемент 3 не будет вложен в элемент 2,  -->
+ <div class="block">
+ 	<div class="block__elem1">
+ 		<div class="block__elem2">
+ 		</div>	
+ 	</div>
+
+ 	<div class="block__elem3"></div>
+ </div>
+
+ если не будет вложен элемент 3 в элемент 2
+ .block__elem2 {} .block__elem3 {color: #000}  - работать не будет
+
+ <!-- БЭМ - у каждого тега должен быть класс  -->
+ <!-- для всех тегов - a,  li писать класс -->
+ <!-- блок может состоять без меню  -->
+ <!-- элемент без блока существовать не может -->
+
+  <!-- модификатор - внешний вид элемент, размер, тему active, disabled -->
+ <!-- Булевый тип - либо правда, либо лож-->
+  <!-- использовать , когда важно только наличие или отсутствие модификатора -->
+
+active    - активный
+disabled  - либо включен, либо выключен
+focused   - в фокусе либо нет
+
+<!-- Ключ значение - редко используется-->
+ <!-- используют когда важно значение модификатора -->
+size--lg
+theme--space
+theme--winter
+
+<!-- Структура полного имени модификатора соответствует схеме: -->
+имя блока--значение-модификатора;
+имя-блока__имя-элемента--значение-модификатора.
+
+<a href="" class="menu__link--active">Если нужно сделать активную когда нижнее подчеркивание</a>  
+<a href="" class="menu__link--theme--space">Ключ</a>
+
+<a href="" class="menu--active">Блок и модификатор</a>
+
+<!-- Модификатор нельз использовать самостоятельно-->
+
+<!-- Микс -->
+<!-- Прием, позволяющий использовать разные БЭМ-сущности на одном DOM--узле -->
+<div class="search-form header__search-form">Форма поиска, которая находится внутри header, блок header => элемент __search-form => внутри блока search-form</div>
+<!-- блок  search-form где-то на сайте еще будет использоваться-->
+<!-- по стандартам БЭМ нельзя блокам вешать внешние отступы -->
+<!-- внешние отступы на блоке header -->
+
+<!-- Файловая структура -->
+<!-- Малый БЭМ стек-->
+<div class="title"></div>
+
+.title {
+	
+}
+
+title.html
+title.css
+title.js
+
+
+<!-- + МЕТОДОЛОГИЯ + https://ru.bem.info/methodology/quick-start/-->
